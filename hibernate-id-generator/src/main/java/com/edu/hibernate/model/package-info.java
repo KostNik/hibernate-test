@@ -3,7 +3,7 @@
         @GenericGenerator(
                 name = Constants.ID_GENERATOR,
                 strategy = "enhanced-sequence",
-//                strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+//                strategy = "org.com.edu.hibernate.id.enhanced.SequenceStyleGenerator",
                 parameters = {
                         @Parameter(
                                 name = SEQUENCE_PARAM,

@@ -1,8 +1,10 @@
 rootProject.name = 'hibernate-test'
 
 include "hibernate-id-generator"
+include "hibernate-subselect"
 include "hibernate-config"
 
 rootProject.children.each { project ->
     project.buildFileName = "${project.name}.gradle"
 }
+
