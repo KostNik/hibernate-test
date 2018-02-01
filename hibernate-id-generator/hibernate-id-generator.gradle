@@ -1,0 +1,8 @@
+
+
+
+dependencies {
+
+    compile project(':hibernate-config')
+
+}

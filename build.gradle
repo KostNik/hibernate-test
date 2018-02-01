@@ -1,0 +1,76 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.github.lkishalmi.gradle:gradle-bom-plugin:0.3'
+    }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'com.github.lkishalmi.bill-of-materials'
+apply from: "$rootDir/versions.gradle"
+
+
+dependencies {
+
+}
+
+
+allprojects {
+
+    group 'com.edu'
+    version '1.0-SNAPSHOT'
+
+    compileJava {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+        options.encoding = 'UTF-8'
+    }
+
+    compileTestJava {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+        options.encoding = 'UTF-8'
+        options.compilerArgs += "-parameters"
+    }
+
+    apply plugin: 'java'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    sourceSets {
+        main {
+            java {
+                srcDirs = ['src/main/java']
+            }
+            resources {
+                srcDirs = ['src/main/resources']
+            }
+        }
+    }
+
+    dependencies {
+        compile group: 'org.projectlombok', name: 'lombok'
+        compile group: 'org.hibernate.validator', name: 'hibernate-validator'
+
+        compile group: 'ch.qos.logback', name: 'logback-classic'
+        compile group: 'org.springframework', name: 'spring-context'
+        compile group: 'org.springframework', name: 'spring-orm'
+        compile group: 'org.springframework', name: 'spring-test'
+
+        compile group: 'com.google.guava', name: 'guava'
+        compile group: 'org.hibernate', name: 'hibernate-core'
+        compile group: 'com.h2database', name: 'h2'
+
+        testCompile group: 'junit', name: 'junit'
+    }
+
+}
+

@@ -1,0 +1,12 @@
+BOM.rules([
+
+        'org.hibernate.validator:hibernate-validator': '6.0.7.Final',
+        'org.springframework'                        : '5.0.3.RELEASE',
+        'ch.qos.logback:logback-classic'             : '1.2.3',
+        'org.hibernate:hibernate-core'               : '5.2.12.Final',
+        'com.h2database:h2'                          : '1.4.196',
+        'com.google.guava:guava'                     : '23.0',
+        'org.projectlombok:lombok'                   : '1.16.20',
+        'junit:junit'                                : '4.12'
+
+])
