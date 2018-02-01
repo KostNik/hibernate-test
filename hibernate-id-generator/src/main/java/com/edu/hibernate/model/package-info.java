@@ -2,8 +2,8 @@
 
         @GenericGenerator(
                 name = Constants.ID_GENERATOR,
-//                strategy = "enhanced-sequence",
-                strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+                strategy = "enhanced-sequence",
+//                strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
                 parameters = {
                         @Parameter(
                                 name = SEQUENCE_PARAM,
@@ -15,7 +15,7 @@
                         ),
                         @Parameter(
                                 name = INCREMENT_PARAM,
-                                value = "5"
+                                value = "1"
                         ),
                         @Parameter(
                                 name = INITIAL_PARAM,

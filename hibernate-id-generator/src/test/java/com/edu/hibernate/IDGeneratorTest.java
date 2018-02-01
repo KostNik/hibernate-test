@@ -1,7 +1,9 @@
 package com.edu.hibernate;
 
 import com.edu.hibernate.config.RootConfig;
+import com.edu.hibernate.model.Category;
 import com.edu.hibernate.model.Item;
+import com.edu.hibernate.repository.CategoryRepository;
 import com.edu.hibernate.repository.ItemRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
@@ -36,7 +38,11 @@ public class IDGeneratorTest {
     @Autowired
     private ItemRepository itemRepository;
 
-    public IDGeneratorTest() {}
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    public IDGeneratorTest() {
+    }
 
     @Before
     public void setUp() {
@@ -45,23 +51,35 @@ public class IDGeneratorTest {
 
     @Test
     public void testIDGenerator() {
-        List<Item> all = itemRepository.getAll();
-        Item item_0 = all.get(0);
-        Item item_9 = all.get(9);
+        List<Item> items = itemRepository.getAll();
+        items.forEach(i -> log.info("Item: {}", i));
 
-        all.forEach(i -> log.info("Item: {}", i));
-        assertEquals(new Long(1000), item_0.getId());
-        assertEquals(new Long(1045), item_9.getId());
+        List<Category> categories = categoryRepository.getAll();
+        categories.forEach(i -> log.info("Category: {}", i));
+
+        Item item_last = items.get(items.size() - 1);
+        Category category_last = categories.get(categories.size() - 1);
+        Long id_max = item_last.getId() > category_last.getId() ? item_last.getId() : category_last.getId();
+
+
+        assertEquals(new Long(1019), id_max);
 
     }
 
     private void fillDB() {
-
         for (int i = 0; i < MAX_ELEMENTS; i++) {
+
+            Category category = new Category();
+            category.setName("Cat_" + i);
+            categoryRepository.save(category);
+
             Item item = new Item();
             item.setName("F_" + i);
             item.setDescription("D_" + i);
             item.setAuctionEnd(Date.from(LocalDateTime.now().plus(Duration.ofDays(i * i * 10)).toInstant(ZoneOffset.UTC)));
+
+
+            item.setCategory(category);
             itemRepository.save(item);
         }
 

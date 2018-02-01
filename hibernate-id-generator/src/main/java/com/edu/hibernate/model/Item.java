@@ -21,11 +21,11 @@ public class Item implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = ID_GENERATOR)
-    protected Long id;
+    private Long id;
 
     @NotNull
     @Version
-    protected long version;
+    private long version;
 
     @NotNull
     @Size(
@@ -33,7 +33,7 @@ public class Item implements Serializable {
             max = 255,
             message = "Name is required, minimum 2, maximum 255 characters."
     )
-    protected String name;
+    private String name;
 
     @NotNull
     @Size(
@@ -41,10 +41,18 @@ public class Item implements Serializable {
             max = 4000,
             message = "Description is required, minimum 10, maximum 4000 characters."
     )
-    protected String description;
+    private String description;
 
     @NotNull(message = "Auction end must be a future date and time.")
     @Future(message = "Auction end must be a future date and time.")
-    protected Date auctionEnd;
+    private Date auctionEnd;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Category category;
+
+    public void setCategory(Category category) {
+        this.category = category;
+        category.getItems().add(this);
+    }
 
 }
