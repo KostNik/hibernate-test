@@ -34,10 +34,10 @@ public class RootConfig {
         HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
         jpaVendorAdapter.setGenerateDdl(true);
         jpaVendorAdapter.setShowSql(true);
-        jpaVendorAdapter.getJpaPropertyMap().put("com.edu.hibernate.dialect", "org.com.edu.hibernate.dialect.H2Dialect");
-        jpaVendorAdapter.getJpaPropertyMap().put("com.edu.hibernate.max_fetch_depth", 3);
-        jpaVendorAdapter.getJpaPropertyMap().put("com.edu.hibernate.jdbc.fetch_size", 50);
-        jpaVendorAdapter.getJpaPropertyMap().put("com.edu.hibernate.jdbc.batch_size", 10);
+        jpaVendorAdapter.getJpaPropertyMap().put("com.edu.com.edu.hibernate.dialect", "org.com.edu.com.edu.hibernate.dialect.H2Dialect");
+        jpaVendorAdapter.getJpaPropertyMap().put("com.edu.com.edu.hibernate.max_fetch_depth", 3);
+        jpaVendorAdapter.getJpaPropertyMap().put("com.edu.com.edu.hibernate.jdbc.fetch_size", 50);
+        jpaVendorAdapter.getJpaPropertyMap().put("com.edu.com.edu.hibernate.jdbc.batch_size", 10);
 
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setDataSource(dataSource());
