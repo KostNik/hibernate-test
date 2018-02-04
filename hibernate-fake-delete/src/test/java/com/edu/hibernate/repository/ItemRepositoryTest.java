@@ -51,9 +51,8 @@ public class ItemRepositoryTest {
         List<Item> allNatively = itemRepository.getAllNatively();
         log.info("ALL REAL items {}", allNatively);
 
-        assertEquals(all_active_after.size(), 4);
-        assertEquals(allNatively.size(), 5);
-
+        assertEquals(4, all_active_after.size());
+        assertEquals(5, allNatively.size());
 
 
     }
