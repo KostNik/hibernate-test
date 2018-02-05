@@ -28,7 +28,9 @@ import static org.junit.Assert.*;
 @ContextConfiguration(classes = RootConfig.class)
 public class ProducerRepositoryTest {
 
-    public static final int  MAX_RESULT = 5;
+    public static final int    MAX_RESULT = 5;
+    public static final String NAME       = "Name_1";
+
     @Autowired
     private ProducerRepository producerRepository;
 
@@ -70,8 +72,9 @@ public class ProducerRepositoryTest {
     @Transactional
     @Test
     public void testGetById() {
-        List<Producer> producers = producerRepository.getAll();
-        Producer producer = producerRepository.getByID(producers.get(0).getId());
+        Producer producerByName = producerRepository.getByNameLike(NAME);
+        Long id = producerByName.getId();
+        Producer producer = producerRepository.getByID(id);
         assertNotNull(producer);
         ContactInfo home = producer.getHome();
         assertNotNull(home);
@@ -80,8 +83,8 @@ public class ProducerRepositoryTest {
     @Transactional
     @Test
     public void testUpdateById() {
-        List<Producer> producers = producerRepository.getAll();
-        Long id = producers.get(producers.size() - 1).getId();
+        Producer producerByName = producerRepository.getByNameLike(NAME);
+        Long id = producerByName.getId();
 
         Producer producer = producerRepository.getByID(id);
         String country = producer.getHome().getAddress().getCountry();

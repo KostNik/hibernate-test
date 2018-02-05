@@ -45,6 +45,7 @@ public class BaseProducerRepository implements ProducerRepository {
     @Override
     public Producer getByNameLike(String pattern) {
         TypedQuery<Producer> typedQuery = entityManager.createNamedQuery("Producer.findByName", Producer.class);
+        typedQuery.setParameter("name", pattern);
         Producer singleResult = typedQuery.getSingleResult();
         return singleResult;
     }
